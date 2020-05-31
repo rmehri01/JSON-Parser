@@ -114,6 +114,9 @@ jValueParser =
            )
         <* spaces
 
+runJsonParser :: String -> Parser JValue -> Either ParseError JValue
+runJsonParser s p = parse p "" s
+
 -- | Runs jValueParser on the given string and returns the resulting JValue or an error
 parseJson :: String -> Either ParseError JValue
-parseJson = parse jValueParser ""
+parseJson s = runJsonParser s jValueParser

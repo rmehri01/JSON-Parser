@@ -23,7 +23,7 @@ library:
 
 tests:
   JSON-Parser-test:
-    main:                Spec.hs
+    main:                ParserSpec.hs
     source-dirs:         test
     ghc-options:
     - -threaded
@@ -31,3 +31,8 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - JSON-Parser
+    - tasty
+    - tasty-hunit
+    - tasty-smallcheck
+    - tasty-quickcheck
+    - tasty-hspec

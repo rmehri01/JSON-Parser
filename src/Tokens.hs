@@ -1,4 +1,5 @@
 {-# OPTIONS_HADDOCK prune #-}
+
 -- | This module is for setting up the built in token functions with the default haskell language lexer
 -- More information at: https://hackage.haskell.org/package/parsec/docs/Text-ParserCombinators-Parsec-Token.html
 module Tokens where

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bbd16cf212656ae05479e41b35208bcdc9aee87cb9f2f098b6e3dde15c90c393
+-- hash: 261d68be8dc448cbd4d7029cf89fe58f357987ec0ad9041637d791f624da0846
 
 name:           JSON-Parser
 version:        0.0.0
@@ -36,7 +36,7 @@ library
 
 test-suite JSON-Parser-test
   type: exitcode-stdio-1.0
-  main-is: Spec.hs
+  main-is: ParserSpec.hs
   other-modules:
       Paths_JSON_Parser
   hs-source-dirs:
@@ -46,4 +46,9 @@ test-suite JSON-Parser-test
       JSON-Parser
     , base >=4.7 && <5
     , parsec >=3.1.11 && <4
+    , tasty
+    , tasty-hspec
+    , tasty-hunit
+    , tasty-quickcheck
+    , tasty-smallcheck
   default-language: Haskell2010
