@@ -84,4 +84,20 @@ unitTests = testGroup
                            jObjectParser
             )
     @?= True
+    , testCase "any jValue that is arbitrarily nested can be parsed"
+    $   runJsonParser
+            "[\"first\" ,-24.6 , { \"second\" : [ true, false, \"hello\" ] } , [null, 23]]"
+            jValueParser
+    @?= Right
+            (JArray
+                [ JString "first"
+                , JNumber (-24.6)
+                , JObject
+                    [ ( "second"
+                      , JArray [JBool True, JBool False, JString "hello"]
+                      )
+                    ]
+                , JArray [JNull, JNumber 23.0]
+                ]
+            )
     ]
