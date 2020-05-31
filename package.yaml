@@ -21,17 +21,6 @@ dependencies:
 library:
   source-dirs: src
 
-executables:
-  JSON-Parser-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - JSON-Parser
-
 tests:
   JSON-Parser-test:
     main:                Spec.hs
