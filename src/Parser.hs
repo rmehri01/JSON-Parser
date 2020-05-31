@@ -54,9 +54,9 @@ jBoolParser = JBool True <$ string "true" <|> JBool False <$ string "false"
 -- expecting "-", float or natural
 jNumberParser :: Parser JValue
 jNumberParser = JNumber <$> number
-  where
-    number = (char '-' *> (negate <$> naturalOrFloat)) <|> naturalOrFloat
-    naturalOrFloat = try float <|> (fromIntegral <$> natural)
+ where
+  number         = (char '-' *> (negate <$> naturalOrFloat)) <|> naturalOrFloat
+  naturalOrFloat = try float <|> (fromIntegral <$> natural)
 
 -- | Parses a string with double quotes around it, returning what is inside
 --
@@ -70,6 +70,12 @@ jNumberParser = JNumber <$> number
 -- expecting literal string
 jStringParser :: Parser JValue
 jStringParser = JString <$> stringLiteral
+
+-- | Parses any string with double quotes around it, returning what is inside
+-- Currently only works for whitespace escaped characters such as '\n'
+-- Other escaped characters will remain in their raw form
+stringLiteral :: Parser String
+stringLiteral = char '\"' *> manyTill (anyChar <|> space) (char '\"')
 
 -- | Parses an array surrounded by brackets and separated by commas and whitespace
 --
@@ -98,22 +104,26 @@ jArrayParser = JArray <$> brackets (commaSep jValueParser)
 -- expecting "{"
 jObjectParser :: Parser JValue
 jObjectParser = JObject <$> braces (commaSep pairParser)
-  where
-    pairParser = (,) <$> (stringLiteral <* spaces <* colon) <*> jValueParser
+ where
+  pairParser = (,) <$> (stringLiteral <* spaces <* colon) <*> jValueParser
 
 -- | Combines all parsers into a single JSON parser that allows for any amount of whitespace between them
 jValueParser :: Parser JValue
 jValueParser =
-    spaces
-        *> (   jNullParser
-           <|> jBoolParser
-           <|> jNumberParser
-           <|> jStringParser
-           <|> jArrayParser
-           <|> jObjectParser
-           )
-        <* spaces
+  spaces
+    *> (   jNullParser
+       <|> jBoolParser
+       <|> jNumberParser
+       <|> jStringParser
+       <|> jArrayParser
+       <|> jObjectParser
+       )
+    <* spaces
+
+-- | Runs the given parser on a string and returns the resulting JValue or error
+runJsonParser :: String -> Parser JValue -> Either ParseError JValue
+runJsonParser s p = parse p "" s
 
 -- | Runs jValueParser on the given string and returns the resulting JValue or an error
 parseJson :: String -> Either ParseError JValue
-parseJson = parse jValueParser ""
+parseJson s = runJsonParser s jValueParser
