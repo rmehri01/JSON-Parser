@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6e9b63f96ba84c37af27ad49542cb5f60639d11eaae63a14c25359938f1672d8
+-- hash: 549dd8f24191cfb3542f5d7449ba3ccca8c619d0a9f1e56b9d572ddecbfb7bbc
 
 name:           JSON-Parser
 version:        0.0.0
@@ -25,6 +25,7 @@ library
   exposed-modules:
       Lib
       Parser
+      Tokens
   other-modules:
       Paths_JSON_Parser
   hs-source-dirs:
