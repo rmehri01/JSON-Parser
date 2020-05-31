@@ -6,7 +6,7 @@ extra-source-files:
 - README.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
+# synopsis:            A concise JSON parser using functional parser combinators via Parsec. 
 # category:            Web
 
 # To avoid duplicated efforts in documentation and dealing with the

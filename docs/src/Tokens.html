@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# OPTIONS_HADDOCK prune #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">-- | This module is for setting up the built in token functions with the default haskell language lexer</span><span>
+</span><span id="line-4"></span><span class="hs-comment">-- More information at: https://hackage.haskell.org/package/parsec/docs/Text-ParserCombinators-Parsec-Token.html</span><span>
+</span><span id="line-5"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Tokens</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Parsec</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Text.Parsec.Token</span></span><span>             </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">P</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Text.Parsec.Language</span></span><span>           </span><span class="hs-special">(</span><span> </span><span class="annot"><span class="hs-identifier">haskellDef</span></span><span> </span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span id="lexer"><span class="annot"><span class="annottext">lexer :: GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var hs-var">lexer</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenLanguageDef String u Identity
+-&gt; GenTokenParser String u Identity
+forall s (m :: * -&gt; *) u.
+Stream s m Char =&gt;
+GenLanguageDef s u m -&gt; GenTokenParser s u m
+</span><span class="hs-identifier hs-var">P.makeTokenParser</span></span><span> </span><span class="annot"><span class="annottext">GenLanguageDef String u Identity
+forall st. LanguageDef st
+</span><span class="hs-identifier hs-var">haskellDef</span></span><span>
+</span><span id="line-12"></span><span id="float"><span class="annot"><span class="annottext">float :: ParsecT String u Identity Double
+</span><a href="Tokens.html#float"><span class="hs-identifier hs-var hs-var">float</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; ParsecT String u Identity Double
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m -&gt; ParsecT s u m Double
+</span><span class="hs-identifier hs-var hs-var">P.float</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-13"></span><span id="natural"><span class="annot"><span class="annottext">natural :: ParsecT String u Identity Integer
+</span><a href="Tokens.html#natural"><span class="hs-identifier hs-var hs-var">natural</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; ParsecT String u Identity Integer
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m -&gt; ParsecT s u m Integer
+</span><span class="hs-identifier hs-var hs-var">P.natural</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-14"></span><span id="symbol"><span class="annot"><span class="annottext">symbol :: String -&gt; ParsecT String u Identity String
+</span><a href="Tokens.html#symbol"><span class="hs-identifier hs-var hs-var">symbol</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; String -&gt; ParsecT String u Identity String
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m -&gt; String -&gt; ParsecT s u m String
+</span><span class="hs-identifier hs-var hs-var">P.symbol</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-15"></span><span id="brackets"><span class="annot"><span class="annottext">brackets :: ParsecT String u Identity a -&gt; ParsecT String u Identity a
+</span><a href="Tokens.html#brackets"><span class="hs-identifier hs-var hs-var">brackets</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; forall a.
+   ParsecT String u Identity a -&gt; ParsecT String u Identity a
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m
+-&gt; forall a. ParsecT s u m a -&gt; ParsecT s u m a
+</span><span class="hs-identifier hs-var hs-var">P.brackets</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-16"></span><span id="commaSep"><span class="annot"><span class="annottext">commaSep :: ParsecT String u Identity a -&gt; ParsecT String u Identity [a]
+</span><a href="Tokens.html#commaSep"><span class="hs-identifier hs-var hs-var">commaSep</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; forall a.
+   ParsecT String u Identity a -&gt; ParsecT String u Identity [a]
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m
+-&gt; forall a. ParsecT s u m a -&gt; ParsecT s u m [a]
+</span><span class="hs-identifier hs-var hs-var">P.commaSep</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-17"></span><span id="braces"><span class="annot"><span class="annottext">braces :: ParsecT String u Identity a -&gt; ParsecT String u Identity a
+</span><a href="Tokens.html#braces"><span class="hs-identifier hs-var hs-var">braces</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; forall a.
+   ParsecT String u Identity a -&gt; ParsecT String u Identity a
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m
+-&gt; forall a. ParsecT s u m a -&gt; ParsecT s u m a
+</span><span class="hs-identifier hs-var hs-var">P.braces</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span><span>
+</span><span id="line-18"></span><span id="colon"><span class="annot"><span class="annottext">colon :: ParsecT String u Identity String
+</span><a href="Tokens.html#colon"><span class="hs-identifier hs-var hs-var">colon</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+-&gt; ParsecT String u Identity String
+forall s u (m :: * -&gt; *).
+GenTokenParser s u m -&gt; ParsecT s u m String
+</span><span class="hs-identifier hs-var hs-var">P.colon</span></span><span> </span><span class="annot"><span class="annottext">GenTokenParser String u Identity
+forall u. GenTokenParser String u Identity
+</span><a href="Tokens.html#lexer"><span class="hs-identifier hs-var">lexer</span></a></span></pre></body></html>
