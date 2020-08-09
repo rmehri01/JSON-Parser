@@ -3,14 +3,15 @@
 </span><span id="line-3"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><span class="hs-identifier">Text.Parsec</span></span><span>
 </span><span id="line-4"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="Tokens.html"><span class="hs-identifier">Tokens</span></a></span><span>
 </span><span id="line-5"></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">data</span><span> </span><span id="JValue"><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-var">JValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-7"></span><span>    </span><span id="JNull"><span class="annot"><a href="Parser.html#JNull"><span class="hs-identifier hs-var">JNull</span></a></span></span><span>
-</span><span id="line-8"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JBool"><span class="annot"><a href="Parser.html#JBool"><span class="hs-identifier hs-var">JBool</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
-</span><span id="line-9"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JNumber"><span class="annot"><a href="Parser.html#JNumber"><span class="hs-identifier hs-var">JNumber</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
-</span><span id="line-10"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JString"><span class="annot"><a href="Parser.html#JString"><span class="hs-identifier hs-var">JString</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-11"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JArray"><span class="annot"><a href="Parser.html#JArray"><span class="hs-identifier hs-var">JArray</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-12"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JObject"><span class="annot"><a href="Parser.html#JObject"><span class="hs-identifier hs-var">JObject</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
-</span><span id="line-13"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679056060"><span id="local-6989586621679056062"><span id="local-6989586621679056064"><span class="annot"><span class="annottext">Int -&gt; JValue -&gt; ShowS
+</span><span id="line-6"></span><span class="hs-comment">-- | Representation of a JSON value.</span><span>
+</span><span id="line-7"></span><span class="hs-keyword">data</span><span> </span><span id="JValue"><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-var">JValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-8"></span><span>    </span><span id="JNull"><span class="annot"><a href="Parser.html#JNull"><span class="hs-identifier hs-var">JNull</span></a></span></span><span>
+</span><span id="line-9"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JBool"><span class="annot"><a href="Parser.html#JBool"><span class="hs-identifier hs-var">JBool</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
+</span><span id="line-10"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JNumber"><span class="annot"><a href="Parser.html#JNumber"><span class="hs-identifier hs-var">JNumber</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-11"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JString"><span class="annot"><a href="Parser.html#JString"><span class="hs-identifier hs-var">JString</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-12"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JArray"><span class="annot"><a href="Parser.html#JArray"><span class="hs-identifier hs-var">JArray</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-13"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JObject"><span class="annot"><a href="Parser.html#JObject"><span class="hs-identifier hs-var">JObject</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679056060"><span id="local-6989586621679056062"><span id="local-6989586621679056064"><span class="annot"><span class="annottext">Int -&gt; JValue -&gt; ShowS
 [JValue] -&gt; ShowS
 JValue -&gt; String
 (Int -&gt; JValue -&gt; ShowS)
@@ -32,22 +33,22 @@ $c/= :: JValue -&gt; JValue -&gt; Bool
 == :: JValue -&gt; JValue -&gt; Bool
 $c== :: JValue -&gt; JValue -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- | Type alias for Parsec that takes a String as input and outputs 'a'</span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- Does not utilize the user state, as given by the ()</span><span>
-</span><span id="line-17"></span><span class="hs-keyword">type</span><span> </span><span id="Parser"><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span id="local-6989586621679056053"><span class="annot"><a href="#local-6989586621679056053"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Parsec</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="annot"><a href="#local-6989586621679056053"><span class="hs-identifier hs-type">a</span></a></span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-comment">-- | Only parses the keyword null with no whitespace</span><span>
-</span><span id="line-20"></span><span class="hs-comment">--</span><span>
-</span><span id="line-21"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNullParser &quot;null&quot;</span><span>
-</span><span id="line-22"></span><span class="hs-comment">-- JNull</span><span>
-</span><span id="line-23"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-24"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNullParser &quot;foo&quot;</span><span>
-</span><span id="line-25"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-26"></span><span class="hs-comment">-- unexpected &quot;f&quot;</span><span>
-</span><span id="line-27"></span><span class="hs-comment">-- expecting &quot;null&quot;</span><span>
-</span><span id="line-28"></span><span class="annot"><a href="Parser.html#jNullParser"><span class="hs-identifier hs-type">jNullParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-29"></span><span id="jNullParser"><span class="annot"><span class="annottext">jNullParser :: Parser JValue
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- | Type alias for `Parsec` that takes a `String` as input and outputs a value of type @a@.</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- Does not utilize the user state, as given by the @()@.</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">type</span><span> </span><span id="Parser"><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-var">Parser</span></a></span></span><span> </span><span id="local-6989586621679056053"><span class="annot"><a href="#local-6989586621679056053"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Parsec</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="annot"><a href="#local-6989586621679056053"><span class="hs-identifier hs-type">a</span></a></span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- | Only parses the keyword @null@ with no whitespace.</span><span>
+</span><span id="line-21"></span><span class="hs-comment">--</span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNullParser &quot;null&quot;</span><span>
+</span><span id="line-23"></span><span class="hs-comment">-- JNull</span><span>
+</span><span id="line-24"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-25"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNullParser &quot;foo&quot;</span><span>
+</span><span id="line-26"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-27"></span><span class="hs-comment">-- unexpected &quot;f&quot;</span><span>
+</span><span id="line-28"></span><span class="hs-comment">-- expecting &quot;null&quot;</span><span>
+</span><span id="line-29"></span><span class="annot"><a href="Parser.html#jNullParser"><span class="hs-identifier hs-type">jNullParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-30"></span><span id="jNullParser"><span class="annot"><span class="annottext">jNullParser :: Parser JValue
 </span><a href="Parser.html#jNullParser"><span class="hs-identifier hs-var hs-var">jNullParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">JValue
 </span><a href="Parser.html#JNull"><span class="hs-identifier hs-var">JNull</span></a></span><span> </span><span class="annot"><span class="annottext">JValue -&gt; ParsecT String () Identity String -&gt; Parser JValue
 forall (f :: * -&gt; *) a b. Functor f =&gt; a -&gt; f b -&gt; f a
@@ -56,18 +57,18 @@ forall s (m :: * -&gt; *) u.
 Stream s m Char =&gt;
 String -&gt; ParsecT s u m String
 </span><span class="hs-identifier hs-var">string</span></span><span> </span><span class="annot"><span class="hs-string">&quot;null&quot;</span></span><span>
-</span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-comment">-- | Parses either true or false with no whitespace</span><span>
-</span><span id="line-32"></span><span class="hs-comment">--</span><span>
-</span><span id="line-33"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jBoolParser &quot;true&quot;</span><span>
-</span><span id="line-34"></span><span class="hs-comment">-- JBool True</span><span>
-</span><span id="line-35"></span><span class="hs-comment">--</span><span>
-</span><span id="line-36"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jBoolParser &quot;bar&quot;</span><span>
-</span><span id="line-37"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-38"></span><span class="hs-comment">-- unexpected &quot;b&quot;</span><span>
-</span><span id="line-39"></span><span class="hs-comment">-- expecting &quot;true&quot; or &quot;false&quot;</span><span>
-</span><span id="line-40"></span><span class="annot"><a href="Parser.html#jBoolParser"><span class="hs-identifier hs-type">jBoolParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-41"></span><span id="jBoolParser"><span class="annot"><span class="annottext">jBoolParser :: Parser JValue
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="hs-comment">-- | Parses either @true@ or @false@ with no whitespace.</span><span>
+</span><span id="line-33"></span><span class="hs-comment">--</span><span>
+</span><span id="line-34"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jBoolParser &quot;true&quot;</span><span>
+</span><span id="line-35"></span><span class="hs-comment">-- JBool True</span><span>
+</span><span id="line-36"></span><span class="hs-comment">--</span><span>
+</span><span id="line-37"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jBoolParser &quot;bar&quot;</span><span>
+</span><span id="line-38"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-39"></span><span class="hs-comment">-- unexpected &quot;b&quot;</span><span>
+</span><span id="line-40"></span><span class="hs-comment">-- expecting &quot;true&quot; or &quot;false&quot;</span><span>
+</span><span id="line-41"></span><span class="annot"><a href="Parser.html#jBoolParser"><span class="hs-identifier hs-type">jBoolParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-42"></span><span id="jBoolParser"><span class="annot"><span class="annottext">jBoolParser :: Parser JValue
 </span><a href="Parser.html#jBoolParser"><span class="hs-identifier hs-var hs-var">jBoolParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; JValue
 </span><a href="Parser.html#JBool"><span class="hs-identifier hs-var">JBool</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span> </span><span class="annot"><span class="annottext">JValue -&gt; ParsecT String () Identity String -&gt; Parser JValue
@@ -88,21 +89,21 @@ forall s (m :: * -&gt; *) u.
 Stream s m Char =&gt;
 String -&gt; ParsecT s u m String
 </span><span class="hs-identifier hs-var">string</span></span><span> </span><span class="annot"><span class="hs-string">&quot;false&quot;</span></span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-comment">-- | Parses a double or integer value</span><span>
-</span><span id="line-44"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-45"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;-23.6&quot;</span><span>
-</span><span id="line-46"></span><span class="hs-comment">-- JNumber (-23.6)</span><span>
-</span><span id="line-47"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-48"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;42&quot;</span><span>
-</span><span id="line-49"></span><span class="hs-comment">-- JNumber 42.0</span><span>
-</span><span id="line-50"></span><span class="hs-comment">--</span><span>
-</span><span id="line-51"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;baz&quot;</span><span>
-</span><span id="line-52"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-53"></span><span class="hs-comment">-- unexpected &quot;b&quot;</span><span>
-</span><span id="line-54"></span><span class="hs-comment">-- expecting &quot;-&quot;, float or natural</span><span>
-</span><span id="line-55"></span><span class="annot"><a href="Parser.html#jNumberParser"><span class="hs-identifier hs-type">jNumberParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-56"></span><span id="jNumberParser"><span class="annot"><span class="annottext">jNumberParser :: Parser JValue
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-comment">-- | Parses a double or integer value.</span><span>
+</span><span id="line-45"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-46"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;-23.6&quot;</span><span>
+</span><span id="line-47"></span><span class="hs-comment">-- JNumber (-23.6)</span><span>
+</span><span id="line-48"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-49"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;42&quot;</span><span>
+</span><span id="line-50"></span><span class="hs-comment">-- JNumber 42.0</span><span>
+</span><span id="line-51"></span><span class="hs-comment">--</span><span>
+</span><span id="line-52"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jNumberParser &quot;baz&quot;</span><span>
+</span><span id="line-53"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-54"></span><span class="hs-comment">-- unexpected &quot;b&quot;</span><span>
+</span><span id="line-55"></span><span class="hs-comment">-- expecting &quot;-&quot;, float or natural</span><span>
+</span><span id="line-56"></span><span class="annot"><a href="Parser.html#jNumberParser"><span class="hs-identifier hs-type">jNumberParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-57"></span><span id="jNumberParser"><span class="annot"><span class="annottext">jNumberParser :: Parser JValue
 </span><a href="Parser.html#jNumberParser"><span class="hs-identifier hs-var hs-var">jNumberParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double -&gt; JValue
 </span><a href="Parser.html#JNumber"><span class="hs-identifier hs-var">JNumber</span></a></span><span> </span><span class="annot"><span class="annottext">(Double -&gt; JValue)
 -&gt; ParsecT String () Identity Double -&gt; Parser JValue
@@ -110,8 +111,8 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">ParsecT String () Identity Double
 forall u. ParsecT String u Identity Double
 </span><a href="#local-6989586621679056045"><span class="hs-identifier hs-var">number</span></a></span><span>
-</span><span id="line-57"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span>  </span><span id="local-6989586621679056045"><span class="annot"><span class="annottext">number :: ParsecT String u Identity Double
+</span><span id="line-58"></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679056045"><span class="annot"><span class="annottext">number :: ParsecT String u Identity Double
 </span><a href="#local-6989586621679056045"><span class="hs-identifier hs-var hs-var">number</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Char -&gt; ParsecT String u Identity Char
 forall s (m :: * -&gt; *) u.
 Stream s m Char =&gt;
@@ -136,7 +137,7 @@ ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
 </span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">ParsecT String u Identity Double
 forall u. ParsecT String u Identity Double
 </span><a href="#local-6989586621679056043"><span class="hs-identifier hs-var">naturalOrFloat</span></a></span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679056043"><span class="annot"><span class="annottext">naturalOrFloat :: ParsecT String u Identity Double
+</span><span id="line-60"></span><span>  </span><span id="local-6989586621679056043"><span class="annot"><span class="annottext">naturalOrFloat :: ParsecT String u Identity Double
 </span><a href="#local-6989586621679056043"><span class="hs-identifier hs-var hs-var">naturalOrFloat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ParsecT String u Identity Double
 -&gt; ParsecT String u Identity Double
 forall s u (m :: * -&gt; *) a. ParsecT s u m a -&gt; ParsecT s u m a
@@ -156,31 +157,32 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">ParsecT String u Identity Integer
 forall u. ParsecT String u Identity Integer
 </span><a href="Tokens.html#natural"><span class="hs-identifier hs-var">natural</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span class="hs-comment">-- | Parses a string with double quotes around it, returning what is inside</span><span>
-</span><span id="line-62"></span><span class="hs-comment">--</span><span>
-</span><span id="line-63"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jStringParser  &quot;\&quot;hello\&quot;&quot;</span><span>
-</span><span id="line-64"></span><span class="hs-comment">-- JString &quot;hello&quot;</span><span>
-</span><span id="line-65"></span><span class="hs-comment">--</span><span>
-</span><span id="line-66"></span><span class="hs-comment">-- This example is missing the double quotes:</span><span>
-</span><span id="line-67"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jStringParser  &quot;hello&quot;</span><span>
-</span><span id="line-68"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-69"></span><span class="hs-comment">-- unexpected &quot;h&quot;</span><span>
-</span><span id="line-70"></span><span class="hs-comment">-- expecting literal string</span><span>
-</span><span id="line-71"></span><span class="annot"><a href="Parser.html#jStringParser"><span class="hs-identifier hs-type">jStringParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-72"></span><span id="jStringParser"><span class="annot"><span class="annottext">jStringParser :: Parser JValue
+</span><span id="line-61"></span><span>
+</span><span id="line-62"></span><span class="hs-comment">-- | Parses a string with double quotes around it, returning what is inside.</span><span>
+</span><span id="line-63"></span><span class="hs-comment">--</span><span>
+</span><span id="line-64"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jStringParser  &quot;\&quot;hello\&quot;&quot;</span><span>
+</span><span id="line-65"></span><span class="hs-comment">-- JString &quot;hello&quot;</span><span>
+</span><span id="line-66"></span><span class="hs-comment">--</span><span>
+</span><span id="line-67"></span><span class="hs-comment">-- This example is missing the double quotes:</span><span>
+</span><span id="line-68"></span><span class="hs-comment">--</span><span>
+</span><span id="line-69"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jStringParser &quot;hello&quot;</span><span>
+</span><span id="line-70"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-71"></span><span class="hs-comment">-- unexpected &quot;h&quot;</span><span>
+</span><span id="line-72"></span><span class="hs-comment">-- expecting literal string</span><span>
+</span><span id="line-73"></span><span class="annot"><a href="Parser.html#jStringParser"><span class="hs-identifier hs-type">jStringParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-74"></span><span id="jStringParser"><span class="annot"><span class="annottext">jStringParser :: Parser JValue
 </span><a href="Parser.html#jStringParser"><span class="hs-identifier hs-var hs-var">jStringParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; JValue
 </span><a href="Parser.html#JString"><span class="hs-identifier hs-var">JString</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; JValue)
 -&gt; ParsecT String () Identity String -&gt; Parser JValue
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">ParsecT String () Identity String
 </span><a href="Parser.html#stringLiteral"><span class="hs-identifier hs-var">stringLiteral</span></a></span><span>
-</span><span id="line-73"></span><span>
-</span><span id="line-74"></span><span class="hs-comment">-- | Parses any string with double quotes around it, returning what is inside</span><span>
-</span><span id="line-75"></span><span class="hs-comment">-- Currently only works for whitespace escaped characters such as '\n'</span><span>
-</span><span id="line-76"></span><span class="hs-comment">-- Other escaped characters will remain in their raw form</span><span>
-</span><span id="line-77"></span><span class="annot"><a href="Parser.html#stringLiteral"><span class="hs-identifier hs-type">stringLiteral</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-78"></span><span id="stringLiteral"><span class="annot"><span class="annottext">stringLiteral :: ParsecT String () Identity String
+</span><span id="line-75"></span><span>
+</span><span id="line-76"></span><span class="hs-comment">-- | Parses any string with double quotes around it, returning what is inside.</span><span>
+</span><span id="line-77"></span><span class="hs-comment">-- Currently only works for whitespace escaped characters such as @\\n@.</span><span>
+</span><span id="line-78"></span><span class="hs-comment">-- Other escaped characters will remain in their raw form.</span><span>
+</span><span id="line-79"></span><span class="annot"><a href="Parser.html#stringLiteral"><span class="hs-identifier hs-type">stringLiteral</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-80"></span><span id="stringLiteral"><span class="annot"><span class="annottext">stringLiteral :: ParsecT String () Identity String
 </span><a href="Parser.html#stringLiteral"><span class="hs-identifier hs-var hs-var">stringLiteral</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Char -&gt; ParsecT String () Identity Char
 forall s (m :: * -&gt; *) u.
 Stream s m Char =&gt;
@@ -209,22 +211,23 @@ forall s (m :: * -&gt; *) u.
 Stream s m Char =&gt;
 Char -&gt; ParsecT s u m Char
 </span><span class="hs-identifier hs-var">char</span></span><span> </span><span class="annot"><span class="hs-char">'\&quot;'</span></span><span class="hs-special">)</span><span>
-</span><span id="line-79"></span><span>
-</span><span id="line-80"></span><span class="hs-comment">-- | Parses an array surrounded by brackets and separated by commas and whitespace</span><span>
-</span><span id="line-81"></span><span class="hs-comment">--</span><span>
-</span><span id="line-82"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;[1, 2, 3, 4]&quot;</span><span>
-</span><span id="line-83"></span><span class="hs-comment">-- JArray [JNumber 1.0,JNumber 2.0,JNumber 3.0,JNumber 4.0]</span><span>
-</span><span id="line-84"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-85"></span><span class="hs-comment">-- Since it is a JSON, there can be different types within the array:</span><span>
-</span><span id="line-86"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;[1, true, null, \&quot;hello\&quot;]&quot;</span><span>
-</span><span id="line-87"></span><span class="hs-comment">-- JArray [JNumber 1.0,JBool True,JNull,JString &quot;hello&quot;]</span><span>
+</span><span id="line-81"></span><span>
+</span><span id="line-82"></span><span class="hs-comment">-- | Parses an array surrounded by brackets and separated by commas and whitespace.</span><span>
+</span><span id="line-83"></span><span class="hs-comment">--</span><span>
+</span><span id="line-84"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;[1, 2, 3, 4]&quot;</span><span>
+</span><span id="line-85"></span><span class="hs-comment">-- JArray [JNumber 1.0,JNumber 2.0,JNumber 3.0,JNumber 4.0]</span><span>
+</span><span id="line-86"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-87"></span><span class="hs-comment">-- Since it is a JSON, there can be different types within the array:</span><span>
 </span><span id="line-88"></span><span class="hs-comment">--</span><span>
-</span><span id="line-89"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;1, true, null, \&quot;hello\&quot;]&quot;</span><span>
-</span><span id="line-90"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-91"></span><span class="hs-comment">-- unexpected &quot;1&quot;</span><span>
-</span><span id="line-92"></span><span class="hs-comment">-- expecting &quot;[&quot;</span><span>
-</span><span id="line-93"></span><span class="annot"><a href="Parser.html#jArrayParser"><span class="hs-identifier hs-type">jArrayParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-94"></span><span id="jArrayParser"><span class="annot"><span class="annottext">jArrayParser :: Parser JValue
+</span><span id="line-89"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;[1, true, null, \&quot;hello\&quot;]&quot;</span><span>
+</span><span id="line-90"></span><span class="hs-comment">-- JArray [JNumber 1.0,JBool True,JNull,JString &quot;hello&quot;]</span><span>
+</span><span id="line-91"></span><span class="hs-comment">--</span><span>
+</span><span id="line-92"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jArrayParser  &quot;1, true, null, \&quot;hello\&quot;]&quot;</span><span>
+</span><span id="line-93"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-94"></span><span class="hs-comment">-- unexpected &quot;1&quot;</span><span>
+</span><span id="line-95"></span><span class="hs-comment">-- expecting &quot;[&quot;</span><span>
+</span><span id="line-96"></span><span class="annot"><a href="Parser.html#jArrayParser"><span class="hs-identifier hs-type">jArrayParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-97"></span><span id="jArrayParser"><span class="annot"><span class="annottext">jArrayParser :: Parser JValue
 </span><a href="Parser.html#jArrayParser"><span class="hs-identifier hs-var hs-var">jArrayParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[JValue] -&gt; JValue
 </span><a href="Parser.html#JArray"><span class="hs-identifier hs-var">JArray</span></a></span><span> </span><span class="annot"><span class="annottext">([JValue] -&gt; JValue)
 -&gt; ParsecT String () Identity [JValue] -&gt; Parser JValue
@@ -238,18 +241,18 @@ forall u a.
 ParsecT String u Identity a -&gt; ParsecT String u Identity [a]
 </span><a href="Tokens.html#commaSep"><span class="hs-identifier hs-var">commaSep</span></a></span><span> </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="Parser.html#jValueParser"><span class="hs-identifier hs-var">jValueParser</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-95"></span><span>
-</span><span id="line-96"></span><span class="hs-comment">-- | Parses an object of String and JValue pairs surrounded by braces and separated by commas and whitespace</span><span>
-</span><span id="line-97"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-98"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jObjectParser &quot;{ \&quot;first\&quot; : 24, \&quot;second\&quot; : null }&quot;</span><span>
-</span><span id="line-99"></span><span class="hs-comment">-- JObject [(&quot;first&quot;,JNumber 24.0),(&quot;second&quot;,JNull)]</span><span>
-</span><span id="line-100"></span><span class="hs-comment">--</span><span>
-</span><span id="line-101"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jObjectParser &quot; \&quot;first\&quot; : 24, \&quot;second\&quot; : null }&quot;</span><span>
-</span><span id="line-102"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
-</span><span id="line-103"></span><span class="hs-comment">-- unexpected &quot; &quot;</span><span>
-</span><span id="line-104"></span><span class="hs-comment">-- expecting &quot;{&quot;</span><span>
-</span><span id="line-105"></span><span class="annot"><a href="Parser.html#jObjectParser"><span class="hs-identifier hs-type">jObjectParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-106"></span><span id="jObjectParser"><span class="annot"><span class="annottext">jObjectParser :: Parser JValue
+</span><span id="line-98"></span><span>
+</span><span id="line-99"></span><span class="hs-comment">-- | Parses an object of `String` and `JValue` pairs surrounded by braces and separated by commas and whitespace.</span><span>
+</span><span id="line-100"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-101"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jObjectParser &quot;{ \&quot;first\&quot; : 24, \&quot;second\&quot; : null }&quot;</span><span>
+</span><span id="line-102"></span><span class="hs-comment">-- JObject [(&quot;first&quot;,JNumber 24.0),(&quot;second&quot;,JNull)]</span><span>
+</span><span id="line-103"></span><span class="hs-comment">--</span><span>
+</span><span id="line-104"></span><span class="hs-comment">-- &gt;&gt;&gt; parseTest jObjectParser &quot; \&quot;first\&quot; : 24, \&quot;second\&quot; : null }&quot;</span><span>
+</span><span id="line-105"></span><span class="hs-comment">-- parse error at (line 1, column 1):</span><span>
+</span><span id="line-106"></span><span class="hs-comment">-- unexpected &quot; &quot;</span><span>
+</span><span id="line-107"></span><span class="hs-comment">-- expecting &quot;{&quot;</span><span>
+</span><span id="line-108"></span><span class="annot"><a href="Parser.html#jObjectParser"><span class="hs-identifier hs-type">jObjectParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-109"></span><span id="jObjectParser"><span class="annot"><span class="annottext">jObjectParser :: Parser JValue
 </span><a href="Parser.html#jObjectParser"><span class="hs-identifier hs-var hs-var">jObjectParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[(String, JValue)] -&gt; JValue
 </span><a href="Parser.html#JObject"><span class="hs-identifier hs-var">JObject</span></a></span><span> </span><span class="annot"><span class="annottext">([(String, JValue)] -&gt; JValue)
 -&gt; ParsecT String () Identity [(String, JValue)] -&gt; Parser JValue
@@ -264,8 +267,8 @@ forall u a.
 ParsecT String u Identity a -&gt; ParsecT String u Identity [a]
 </span><a href="Tokens.html#commaSep"><span class="hs-identifier hs-var">commaSep</span></a></span><span> </span><span class="annot"><span class="annottext">ParsecT String () Identity (String, JValue)
 </span><a href="#local-6989586621679056028"><span class="hs-identifier hs-var">pairParser</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-107"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-108"></span><span>  </span><span id="local-6989586621679056028"><span class="annot"><span class="annottext">pairParser :: ParsecT String () Identity (String, JValue)
+</span><span id="line-110"></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-111"></span><span>  </span><span id="local-6989586621679056028"><span class="annot"><span class="annottext">pairParser :: ParsecT String () Identity (String, JValue)
 </span><a href="#local-6989586621679056028"><span class="hs-identifier hs-var hs-var">pairParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-special">,</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(String -&gt; JValue -&gt; (String, JValue))
 -&gt; ParsecT String () Identity String
 -&gt; ParsecT String () Identity (JValue -&gt; (String, JValue))
@@ -288,53 +291,53 @@ forall u. ParsecT String u Identity String
 forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;*&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="Parser.html#jValueParser"><span class="hs-identifier hs-var">jValueParser</span></a></span><span>
-</span><span id="line-109"></span><span>
-</span><span id="line-110"></span><span class="hs-comment">-- | Combines all parsers into a single JSON parser that allows for any amount of whitespace between them</span><span>
-</span><span id="line-111"></span><span class="annot"><a href="Parser.html#jValueParser"><span class="hs-identifier hs-type">jValueParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-112"></span><span id="jValueParser"><span class="annot"><span class="annottext">jValueParser :: Parser JValue
+</span><span id="line-112"></span><span>
+</span><span id="line-113"></span><span class="hs-comment">-- | Combines all parsers into a single JSON parser that allows for any amount of whitespace between them.</span><span>
+</span><span id="line-114"></span><span class="annot"><a href="Parser.html#jValueParser"><span class="hs-identifier hs-type">jValueParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-115"></span><span id="jValueParser"><span class="annot"><span class="annottext">jValueParser :: Parser JValue
 </span><a href="Parser.html#jValueParser"><span class="hs-identifier hs-var hs-var">jValueParser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-113"></span><span>  </span><span class="annot"><span class="annottext">ParsecT String () Identity ()
+</span><span id="line-116"></span><span>  </span><span class="annot"><span class="annottext">ParsecT String () Identity ()
 forall s (m :: * -&gt; *) u. Stream s m Char =&gt; ParsecT s u m ()
 </span><span class="hs-identifier hs-var">spaces</span></span><span>
-</span><span id="line-114"></span><span>    </span><span class="annot"><span class="annottext">ParsecT String () Identity () -&gt; Parser JValue -&gt; Parser JValue
+</span><span id="line-117"></span><span>    </span><span class="annot"><span class="annottext">ParsecT String () Identity () -&gt; Parser JValue -&gt; Parser JValue
 forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f b
 </span><span class="hs-operator hs-var">*&gt;</span></span><span> </span><span class="hs-special">(</span><span>   </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="Parser.html#jNullParser"><span class="hs-identifier hs-var">jNullParser</span></a></span><span>
-</span><span id="line-115"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
-forall s u (m :: * -&gt; *) a.
-ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
-</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
-</span><a href="Parser.html#jBoolParser"><span class="hs-identifier hs-var">jBoolParser</span></a></span><span>
-</span><span id="line-116"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
-forall s u (m :: * -&gt; *) a.
-ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
-</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
-</span><a href="Parser.html#jNumberParser"><span class="hs-identifier hs-var">jNumberParser</span></a></span><span>
-</span><span id="line-117"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
-forall s u (m :: * -&gt; *) a.
-ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
-</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
-</span><a href="Parser.html#jStringParser"><span class="hs-identifier hs-var">jStringParser</span></a></span><span>
 </span><span id="line-118"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
 forall s u (m :: * -&gt; *) a.
 ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
 </span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
-</span><a href="Parser.html#jArrayParser"><span class="hs-identifier hs-var">jArrayParser</span></a></span><span>
+</span><a href="Parser.html#jBoolParser"><span class="hs-identifier hs-var">jBoolParser</span></a></span><span>
 </span><span id="line-119"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
 forall s u (m :: * -&gt; *) a.
 ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
 </span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
+</span><a href="Parser.html#jNumberParser"><span class="hs-identifier hs-var">jNumberParser</span></a></span><span>
+</span><span id="line-120"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
+forall s u (m :: * -&gt; *) a.
+ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
+</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
+</span><a href="Parser.html#jStringParser"><span class="hs-identifier hs-var">jStringParser</span></a></span><span>
+</span><span id="line-121"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
+forall s u (m :: * -&gt; *) a.
+ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
+</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
+</span><a href="Parser.html#jArrayParser"><span class="hs-identifier hs-var">jArrayParser</span></a></span><span>
+</span><span id="line-122"></span><span>       </span><span class="annot"><span class="annottext">Parser JValue -&gt; Parser JValue -&gt; Parser JValue
+forall s u (m :: * -&gt; *) a.
+ParsecT s u m a -&gt; ParsecT s u m a -&gt; ParsecT s u m a
+</span><span class="hs-operator hs-var">&lt;|&gt;</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="Parser.html#jObjectParser"><span class="hs-identifier hs-var">jObjectParser</span></a></span><span>
-</span><span id="line-120"></span><span>       </span><span class="hs-special">)</span><span>
-</span><span id="line-121"></span><span>    </span><span class="annot"><span class="annottext">Parser JValue -&gt; ParsecT String () Identity () -&gt; Parser JValue
+</span><span id="line-123"></span><span>       </span><span class="hs-special">)</span><span>
+</span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">Parser JValue -&gt; ParsecT String () Identity () -&gt; Parser JValue
 forall (f :: * -&gt; *) a b. Applicative f =&gt; f a -&gt; f b -&gt; f a
 </span><span class="hs-operator hs-var">&lt;*</span></span><span> </span><span class="annot"><span class="annottext">ParsecT String () Identity ()
 forall s (m :: * -&gt; *) u. Stream s m Char =&gt; ParsecT s u m ()
 </span><span class="hs-identifier hs-var">spaces</span></span><span>
-</span><span id="line-122"></span><span>
-</span><span id="line-123"></span><span class="hs-comment">-- | Runs the given parser on a string and returns the resulting JValue or error</span><span>
-</span><span id="line-124"></span><span class="annot"><a href="Parser.html#runJsonParser"><span class="hs-identifier hs-type">runJsonParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ParseError</span></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-125"></span><span id="runJsonParser"><span class="annot"><span class="annottext">runJsonParser :: String -&gt; Parser JValue -&gt; Either ParseError JValue
+</span><span id="line-125"></span><span>
+</span><span id="line-126"></span><span class="hs-comment">-- | Runs the given parser on a `String` and returns the resulting `JValue` or error.</span><span>
+</span><span id="line-127"></span><span class="annot"><a href="Parser.html#runJsonParser"><span class="hs-identifier hs-type">runJsonParser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Parser.html#Parser"><span class="hs-identifier hs-type">Parser</span></a></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ParseError</span></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-128"></span><span id="runJsonParser"><span class="annot"><span class="annottext">runJsonParser :: String -&gt; Parser JValue -&gt; Either ParseError JValue
 </span><a href="Parser.html#runJsonParser"><span class="hs-identifier hs-var hs-var">runJsonParser</span></a></span></span><span> </span><span id="local-6989586621679056023"><span class="annot"><span class="annottext">s :: String
 </span><a href="#local-6989586621679056023"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span id="local-6989586621679056022"><span class="annot"><span class="annottext">p :: Parser JValue
 </span><a href="#local-6989586621679056022"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser JValue -&gt; String -&gt; String -&gt; Either ParseError JValue
@@ -344,13 +347,13 @@ Parsec s () a -&gt; String -&gt; s -&gt; Either ParseError a
 </span><span class="hs-identifier hs-var">parse</span></span><span> </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="#local-6989586621679056022"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="hs-string">&quot;&quot;</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679056023"><span class="hs-identifier hs-var">s</span></a></span><span>
-</span><span id="line-126"></span><span>
-</span><span id="line-127"></span><span class="hs-comment">-- | Runs jValueParser on the given string and returns the resulting JValue or an error</span><span>
-</span><span id="line-128"></span><span class="annot"><a href="Parser.html#parseJson"><span class="hs-identifier hs-type">parseJson</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ParseError</span></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
-</span><span id="line-129"></span><span id="parseJson"><span class="annot"><span class="annottext">parseJson :: String -&gt; Either ParseError JValue
+</span><span id="line-129"></span><span>
+</span><span id="line-130"></span><span class="hs-comment">-- | Runs `jValueParser` on the given `String` and returns the resulting `JValue` or an error.</span><span>
+</span><span id="line-131"></span><span class="annot"><a href="Parser.html#parseJson"><span class="hs-identifier hs-type">parseJson</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Either</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">ParseError</span></span><span> </span><span class="annot"><a href="Parser.html#JValue"><span class="hs-identifier hs-type">JValue</span></a></span><span>
+</span><span id="line-132"></span><span id="parseJson"><span class="annot"><span class="annottext">parseJson :: String -&gt; Either ParseError JValue
 </span><a href="Parser.html#parseJson"><span class="hs-identifier hs-var hs-var">parseJson</span></a></span></span><span> </span><span id="local-6989586621679056019"><span class="annot"><span class="annottext">s :: String
 </span><a href="#local-6989586621679056019"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser JValue -&gt; Either ParseError JValue
 </span><a href="Parser.html#runJsonParser"><span class="hs-identifier hs-var">runJsonParser</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679056019"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Parser JValue
 </span><a href="Parser.html#jValueParser"><span class="hs-identifier hs-var">jValueParser</span></a></span><span>
-</span><span id="line-130"></span></pre></body></html>
+</span><span id="line-133"></span></pre></body></html>

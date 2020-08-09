@@ -14,6 +14,8 @@
 module Tokens
 
 module Parser
+
+-- | Representation of a JSON value.
 data JValue
 JNull :: JValue
 JBool :: Bool -> JValue
@@ -22,11 +24,12 @@ JString :: String -> JValue
 JArray :: [JValue] -> JValue
 JObject :: [(String, JValue)] -> JValue
 
--- | Type alias for Parsec that takes a String as input and outputs
---   <tt>a</tt> Does not utilize the user state, as given by the ()
+-- | Type alias for <a>Parsec</a> that takes a <a>String</a> as input and
+--   outputs a value of type <tt>a</tt>. Does not utilize the user state,
+--   as given by the <tt>()</tt>.
 type Parser a = Parsec String () a
 
--- | Only parses the keyword null with no whitespace
+-- | Only parses the keyword <tt>null</tt> with no whitespace.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jNullParser "null"
@@ -41,7 +44,7 @@ type Parser a = Parsec String () a
 --   </pre>
 jNullParser :: Parser JValue
 
--- | Parses either true or false with no whitespace
+-- | Parses either <tt>true</tt> or <tt>false</tt> with no whitespace.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jBoolParser "true"
@@ -56,7 +59,7 @@ jNullParser :: Parser JValue
 --   </pre>
 jBoolParser :: Parser JValue
 
--- | Parses a double or integer value
+-- | Parses a double or integer value.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jNumberParser "-23.6"
@@ -76,25 +79,31 @@ jBoolParser :: Parser JValue
 --   </pre>
 jNumberParser :: Parser JValue
 
--- | Parses a string with double quotes around it, returning what is inside
+-- | Parses a string with double quotes around it, returning what is
+--   inside.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jStringParser  "\"hello\""
 --   JString "hello"
 --   </pre>
 --   
---   This example is missing the double quotes: &gt;&gt;&gt; parseTest
---   jStringParser "hello" parse error at (line 1, column 1): unexpected
---   "h" expecting literal string
+--   This example is missing the double quotes:
+--   
+--   <pre>
+--   &gt;&gt;&gt; parseTest jStringParser "hello"
+--   parse error at (line 1, column 1):
+--   unexpected "h"
+--   expecting literal string
+--   </pre>
 jStringParser :: Parser JValue
 
 -- | Parses any string with double quotes around it, returning what is
---   inside Currently only works for whitespace escaped characters such as
---   'n' Other escaped characters will remain in their raw form
+--   inside. Currently only works for whitespace escaped characters such as
+--   <tt>\n</tt>. Other escaped characters will remain in their raw form.
 stringLiteral :: Parser String
 
 -- | Parses an array surrounded by brackets and separated by commas and
---   whitespace
+--   whitespace.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jArrayParser  "[1, 2, 3, 4]"
@@ -102,8 +111,11 @@ stringLiteral :: Parser String
 --   </pre>
 --   
 --   Since it is a JSON, there can be different types within the array:
---   &gt;&gt;&gt; parseTest jArrayParser "[1, true, null, "hello"]" JArray
---   [JNumber 1.0,JBool True,JNull,JString "hello"]
+--   
+--   <pre>
+--   &gt;&gt;&gt; parseTest jArrayParser  "[1, true, null, \"hello\"]"
+--   JArray [JNumber 1.0,JBool True,JNull,JString "hello"]
+--   </pre>
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jArrayParser  "1, true, null, \"hello\"]"
@@ -113,8 +125,8 @@ stringLiteral :: Parser String
 --   </pre>
 jArrayParser :: Parser JValue
 
--- | Parses an object of String and JValue pairs surrounded by braces and
---   separated by commas and whitespace
+-- | Parses an object of <a>String</a> and <a>JValue</a> pairs surrounded
+--   by braces and separated by commas and whitespace.
 --   
 --   <pre>
 --   &gt;&gt;&gt; parseTest jObjectParser "{ \"first\" : 24, \"second\" : null }"
@@ -130,15 +142,15 @@ jArrayParser :: Parser JValue
 jObjectParser :: Parser JValue
 
 -- | Combines all parsers into a single JSON parser that allows for any
---   amount of whitespace between them
+--   amount of whitespace between them.
 jValueParser :: Parser JValue
 
--- | Runs the given parser on a string and returns the resulting JValue or
---   error
+-- | Runs the given parser on a <a>String</a> and returns the resulting
+--   <a>JValue</a> or error.
 runJsonParser :: String -> Parser JValue -> Either ParseError JValue
 
--- | Runs jValueParser on the given string and returns the resulting JValue
---   or an error
+-- | Runs <a>jValueParser</a> on the given <a>String</a> and returns the
+--   resulting <a>JValue</a> or an error.
 parseJson :: String -> Either ParseError JValue
 instance GHC.Classes.Eq Parser.JValue
 instance GHC.Show.Show Parser.JValue
